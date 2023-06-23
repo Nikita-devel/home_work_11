@@ -36,9 +36,11 @@ class Phone(Field):
 
     @staticmethod
     def _is_valid_phone(phone):
-        # Implement your phone number validation logic here
-        # Return True if the phone number is valid, False otherwise
-        return True  # Placeholder implementation
+        if len(phone) != 10:
+            return False
+        if not phone.isdigit():
+            return False
+        return True
 
 
 class Birthday(Field):
@@ -53,9 +55,11 @@ class Birthday(Field):
 
     @staticmethod
     def _is_valid_birthday(birthday):
-        # Implement your birthday validation logic here
-        # Return True if the birthday is valid, False otherwise
-        return True  # Placeholder implementation
+        try:
+            datetime.datetime.strptime(birthday, "%Y-%m-%d")
+            return True
+        except ValueError:
+            return False
 
 
 class Record:
@@ -158,7 +162,7 @@ def change_contact(name, old_phone, new_phone):
 def get_phone(name):
     if name.value in contacts:
         record = contacts[name.value]
-        return record.phones
+        return [str(phone) for phone in record.phones]
     else:
         return "Contact not found"
 
@@ -220,11 +224,11 @@ def parse_command(user_input):
         else:
             raise ValueError("Give me name and phone please")
     elif command == "change":
-        if len(arguments) == 2:
-            name, phone = arguments
-            print(change_contact(name, phone))
+        if len(arguments) == 3:
+            name, old_phone, new_phone = arguments
+            print(change_contact(name, old_phone, new_phone))
         else:
-            raise ValueError("Give me name and phone please")
+            raise ValueError("Give me name, old phone, and new phone please")
     elif command == "phone":
         if len(arguments) == 1:
             name = arguments[0]
@@ -249,25 +253,15 @@ def parse_command(user_input):
         print(get_current_time())
     elif command == "help":
         print(help_commands())
-    elif command in ["good", "bye", "close", "exit"]:
-        print("Good bye!")
-        return True
+    elif command in ["goodbye", "close", "exit"]:
+        print("Goodbye!")
+        exit()
     else:
         print("Invalid command. Type 'help' to see the available commands.")
 
-    return False
-
-
-def main():
-    print("Welcome to the Assistant! How can I help you?")
-    while True:
-        try:
-            user_input = input("Enter a command: ").lower().split(" ")
-            if parse_command(user_input):
-                break
-        except Exception as e:
-            print(str(e))
-
 
 if __name__ == "__main__":
-    main()
+    print("Welcome to the Address Book Assistant!")
+    while True:
+        user_input = input("Enter a command: ").strip().split(" ")
+        parse_command(user_input)
