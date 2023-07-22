@@ -1,31 +1,93 @@
 # home_work_11
- 
+
 # Address Book Assistant
 
-This is a simple command-line assistant that allows you to manage an address book and perform various tasks such as adding contacts, changing phone numbers, getting contact information, and more.
+The Address Book Assistant is a simple command-line application that allows you to manage contacts in an address book. You can add, edit, delete, and search for contacts, as well as get weather information and the current time. The assistant also supports adding and tracking the birthdays of your contacts.
 
 ## Getting Started
 
-To run the Address Book Assistant, you need to have Python 3 installed on your system. Clone this repository and install the required dependencies using the following command:
+### Prerequisites
 
-pip install -r requirements.txt
+- Python 3.6 or higher
+
+### Installation
+
+1. Clone this repository to your local machine or download the ZIP file.
+
+2. Open a terminal or command prompt and navigate to the project directory.
+
+3. It's recommended to create a virtual environment to manage dependencies:
+
+   python -m venv venv
 
 
-Make sure you have the necessary API key for accessing weather information from OpenWeatherMap.
+4. Activate the virtual environment:
 
-## Usage
+   - On Windows:
 
-Run the main script `as02.py` to start the assistant. You will be presented with a command prompt where you can enter various commands to interact with the assistant.
+   venv\Scripts\activate
 
-### Available Commands
 
-- `hello`: Greet the assistant
-- `add <name> <phone>`: Add a contact with the given name and phone number
-- `change <name> <old_phone> <new_phone>`: Change the phone number of an existing contact
-- `phone <name>`: Get the phone number(s) of a contact
-- `show all`: Show all saved contacts
-- `weather <city>`: Get the current weather in the specified city
-- `time`: Get the current time
-- `help`: Show available commands
-- `goodbye`, `close`, `exit`: Close the assistant
+   - On macOS and Linux:
 
+   source venv/bin/activate
+
+
+5. Install the required dependencies from the `requirements.txt` file:
+
+   pip install -r requirements.txt
+
+
+### Usage
+
+To start the Address Book Assistant, run the `main.py` script:
+
+python main.py
+
+
+Once the assistant is running, you can interact with it using commands:
+
+- To add a contact:
+
+  add <name> <phone> [birthday]
+
+  If the `birthday` argument is provided in the format "DD/MM," the assistant will add the contact's birthday.
+
+- To change a contact's phone number:
+
+  change <name> <old_phone> <new_phone>
+
+
+- To get the phone number(s) of a contact:
+
+  phone <name>
+
+
+- To show all saved contacts with pagination (default page size is 10):
+
+  show all
+
+
+- To get the current weather in a specified city:
+
+  weather <city>
+
+
+- To get the current time:
+
+  time
+
+
+- To see available commands:
+
+  help
+
+
+- To exit the assistant:
+
+  goodbye, close, bye, good, exit
+
+
+## Contributing
+
+Contributions to this project are welcome. If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.

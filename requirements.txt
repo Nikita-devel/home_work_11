@@ -1,2 +1,2 @@
 datetime
-requests
+requests==2.26.0
