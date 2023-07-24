@@ -12,7 +12,8 @@ def add_birthday(name, birthday):
     matching_names = [n for n in contacts if n.lower() == name.lower()]
     if matching_names:
         record = contacts[matching_names[0]]
-        record.birthday = birthday
+        record.birthday.day = birthday.day
+        record.birthday.month = birthday.month
         return "Birthday added successfully"
     else:
         return "Contact not found"
@@ -20,12 +21,13 @@ def add_birthday(name, birthday):
 
 @input_error
 def add_contact(name, phone, birthday=None):
-    name = Name(str(name).capitalize())
+    name = Name(name)
     if name.value in contacts:
         record = contacts[name.value]
         record.add_phone(phone)
         if birthday:
-            record.birthday = birthday
+            record.birthday.day = birthday.day
+            record.birthday.month = birthday.month
     else:
         record = Record(name, phone, birthday)
         contacts.add_record(record)
@@ -85,7 +87,7 @@ def help_commands():
     return """
     Available commands:
     - hello: Greet the assistant
-    - add <name> <phone>: Add a contact with the given name and phone number
+    - add <name> <phone> [birthday]: Add a contact with the given name, phone number and the birthday (argument is provided in the format "DD/MM," the assistant will add the contact's birthday).
     - change <name> <old_phone> <new_phone>: Change the phone number of an existing contact
     - phone <name>: Get the phone number(s) of a contact
     - show all: Show all saved contacts

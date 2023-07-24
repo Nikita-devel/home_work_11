@@ -2,29 +2,61 @@ import datetime
 
 class Name:
     def __init__(self, value=None):
-        self.value = value
+        self._value = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, new_value):
+        self._value = str(new_value).capitalize()
 
     def __str__(self):
-        return str(self.value).capitalize()
+        return str(self._value)
 
 
 class Phone:
     def __init__(self, value=None):
-        self.value = value
+        self._value = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, new_value):
+        self._value = new_value
 
     def __str__(self):
-        return str(self.value)
-    
+        return str(self._value)
+
 
 class Birthday:
     def __init__(self, day=None, month=None):
-        self.day = day
-        self.month = month
+        self._day = day
+        self._month = month
+
+    @property
+    def day(self):
+        return self._day
+
+    @day.setter
+    def day(self, new_day):
+        self._day = new_day
+
+    @property
+    def month(self):
+        return self._month
+
+    @month.setter
+    def month(self, new_month):
+        self._month = new_month
 
     def __str__(self):
-        if self.day is None or self.month is None:
+        if self._day is None or self._month is None:
             return "Not specified"
-        return f"{self.day:02d}/{self.month:02d}"
+        return f"{self._day:02d}/{self._month:02d}"
 
 
 class Record:
