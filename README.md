@@ -1,3 +1,5 @@
+[Main page](https://github.com/Nikita-devel) | [Python Core Page](https://github.com/Nikita-devel/Python_Core)
+
 # Console Assistant Bot
 
 The Address Book Assistant is a simple command-line application that allows you to manage contacts in an address book. You can add, edit, delete, and search for contacts, as well as get weather information and the current time. The assistant also supports adding and tracking the birthdays of your contacts.
